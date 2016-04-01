@@ -1,17 +1,21 @@
-var semi = ';',
-    prgFiles = 'C:\\Program Files\\Java\\',
+var fs = require('fs');
+
+var prgFiles = 'C:\\Program Files\\Java\\',
+    bser = '\\bin\\server\\;'
     j7 = '1.7.0',
     j8 = '1.8.0',
     jdk7 = `jdk${j7}`,
     jre7 = `jre${j7}`,
     jdk8 = `jdk${j8}`,
     jre8 = `jre${j8}`;
-
+var pathStr = '';
 var i;
-for (i=0; i<81; i++) {
+for(i=0; i<81; i++) {
   if(i===0) {
-    console.log(`${prgFiles + jdk7}`);
-    console.log(`${prgFiles + jre7}`);
+    // console.log(`${prgFiles + jdk7}`);
+    // console.log(`${prgFiles + jre7}`);
+    pathStr+=`${prgFiles+jdk7+'\\jre'+bser}`;
+    pathStr+=`${prgFiles+jre7+bser}`;
   } else {
     var iter = i.toString();
     var rel;
@@ -23,8 +27,14 @@ for (i=0; i<81; i++) {
     ? iter
     : null;
     if(rel) {
-      console.log(`${prgFiles + jdk7 + '_' + i}`);
-      console.log(`${prgFiles + jre7 + '_' + i}`);  
+      // console.log(`${prgFiles + jdk7 + '_' + i}`);
+      // console.log(`${prgFiles + jre7 + '_' + i}`);
+      pathStr+=`${prgFiles + jdk7 + '_' + i + '\\jre' + bser}`;
+      pathStr+=`${prgFiles + jre7 + '_' + i + bser}`;
     }
+    console.log(pathStr);
   }
+}
+
+for(i=0; i<81; i++) {
 }
