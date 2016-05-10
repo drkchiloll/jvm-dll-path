@@ -1,19 +1,19 @@
 var fs = require('fs');
 
-var prgFiles = 'C:\\Program Files\\Java\\',
-    binSer = '\\bin\\server\\;';
+var prgFiles = 'C:\\\\Program Files\\\\Java\\\\',
+    binSer = '\\\\bin\\\\server;';
 
 var baseJavaVersion = (jver, update) => {
   var ver = `1.${jver}.0`,
       jdk = `jdk${ver}${(update) ? ('_' + update) : ''}`,
       jre = `jre${ver}${(update) ? ('_' + update) : ''}`;
   return (
-    `${prgFiles + jdk + '\\jre' + binSer}`+
+    `${prgFiles + jdk + '\\\\jre' + binSer}`+
     `${prgFiles + jre + binSer}`
   );
 };
 
-var pathStr = '';
+var pathStr = '\"';
 var i;
 for(i=0; i<81; i++) {
   if(i===0) {
@@ -47,4 +47,7 @@ for(i=0; i<=92; i++) {
     }
   }
 }
-console.log(pathStr);
+pathStr+='\"';
+fs.writeFile('jvm_dll_path.json', pathStr, 'utf8', (err, res) => {
+  console.log(res)
+})
